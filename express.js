@@ -1,11 +1,10 @@
-const express = require('express')
-const serveStatic = require('serve-static')
-const path = require('path')
+var express = require('express');
+var app = express();
+var path = require('path');
 
-const app = express()
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', serveStatic(path.json(__dirname, '/dist')))
-
-const port = process.env.PORT || 8080
-app.listen(port)
-console.log("Listening port " + port)
+const server = app.listen(process.env.PORT || 5000, () => {
+    const port = server.address().port;
+    console.log(`Express is working on port ${port}`);
+});
